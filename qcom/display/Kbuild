@@ -49,12 +49,15 @@ dtbo-$(CONFIG_ARCH_KHAJE) += display/khaje-sde.dtbo \
 		display/khaje-sde-display-atp-overlay.dtbo \
 		display/khaje-sde-display-idp-nopmi-overlay.dtbo \
 		display/khaje-sde-display-qrd-nopmi-overlay.dtbo \
-		display/khaje-sde-display-qrd-nowcd9375-overlay.dtbo \
-		display/topaz-sde-display-idp-nopmi-overlay.dtbo \
-		display/tapas-sde-display-idp-nopmi-overlay.dtbo \
-		display/sapphiren-sde-display-idp-overlay.dtbo \
-		display/sapphire-sde-display-idp-overlay.dtbo \
-		display/creek-sde-display-idp-nopmi-overlay.dtbo
+		display/khaje-sde-display-qrd-nowcd9375-overlay.dtbo
+
+dtbo-$(CONFIG_TOPAZ_DTB) += display/tapas-sde-display-idp-nopmi-overlay.dtbo \
+				display/topaz-sde-display-idp-nopmi-overlay.dtbo
+
+dtbo-$(CONFIG_SAPPHIREN_DTB) += display/sapphiren-sde-display-idp-overlay.dtbo \
+				display/sapphire-sde-display-idp-overlay.dtbo
+
+dtbo-$(CONFIG_CREEK_DTB) += display/creek-sde-display-idp-nopmi-overlay.dtbo
 
 dtbo-$(CONFIG_ARCH_MONACO) += display/monaco-sde.dtbo \
 		display/monaco-sde-display-idp-overlay.dtbo \

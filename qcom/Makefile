@@ -135,18 +135,25 @@ KHAJE_BOARDS += \
 		 khajeg-idp-nopmi-overlay.dtbo \
 		 khajeg-idp-usbc-overlay.dtbo \
 		 khajeg-idp-pm8010-overlay.dtbo \
-		 khajeg-idps-display-90hz-overlay.dtbo \
-		 topaz-khaje-idp-nopmi-overlay.dtbo \
-		 topaz-sm5602-khaje-idp-nopmi-overlay.dtbo \
-		 tapas-khaje-idp-nopmi-overlay.dtbo \
-		 tapas-sm5602-khaje-idp-nopmi-overlay.dtbo \
-		 sapphiren-khajep-idp-overlay.dtbo \
-		 sapphire-khajep-idp-overlay.dtbo \
-		 creek-sm6225-overlay.dtbo
+		 khajeg-idps-display-90hz-overlay.dtbo
+
+ifeq ($(CONFIG_TOPAZ_DTB),y)
+XIAOMI_KHAJE_BOARDS += \
+		topaz-khaje-idp-nopmi-overlay.dtbo \
+		topaz-sm5602-khaje-idp-nopmi-overlay.dtbo \
+		tapas-khaje-idp-nopmi-overlay.dtbo \
+		tapas-sm5602-khaje-idp-nopmi-overlay.dtbo
+else ifeq ($(CONFIG_SAPPHIRE_DTB),y)
+		sapphiren-khajep-idp-overlay.dtbo \
+		sapphire-khajep-idp-overlay.dtbo
+else ifeq ($(CONFIG_CREEK_DTB),y)
+XIAOMI_KHAJE_BOARDS += \
+		creek-sm6225-overlay.dtbo
+endif
 
 bengal-dtb-$(CONFIG_ARCH_KHAJE) += \
-        $(call add-overlays, $(KHAJE_BOARDS) ,$(KHAJE_BASE_DTB))
-bengal-overlays-dtb-$(CONFIG_ARCH_KHAJE) += $(KHAJE_BOARDS) $(KHAJE_BASE_DTB)
+        $(call add-overlays, $(XIAOMI_KHAJE_BOARDS), $(KHAJE_BOARDS) ,$(KHAJE_BASE_DTB))
+bengal-overlays-dtb-$(CONFIG_ARCH_KHAJE) += $(XIAOMI_KHAJE_BOARDS) $(KHAJE_BOARDS) $(KHAJE_BASE_DTB)
 dtb-y += $(bengal-dtb-y)
 
 KONA_BASE_DTB += kona-iot.dtb kona-iot-v2.dtb kona-iot-v2.1.dtb kona-7230-iot-v2.1.dtb

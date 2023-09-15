@@ -9,9 +9,12 @@ dtbo-$(CONFIG_ARCH_KHAJE) += khajeg-camera-idp.dtbo \
 				khaje-camera-sensor-qrd-hvdcp3p5.dtbo \
 				khaje-camera-sensor-qrd-nowcd9375.dtbo \
 				khaje-camera-sensor-idps-display-90hz.dtbo \
-				khaje-camera-sensor-idp-usbc.dtbo \
-				topaz-camera-sensor-idp-overlay.dtbo \
-				tapas-camera-sensor-idp-overlay.dtbo \
-				sapphiren-camera-sensor-idp-overlay.dtbo \
-				sapphire-camera-sensor-idp-overlay.dtbo \
-				creek-camera-sensor-idp-nopmi-overlay.dtbo
+				khaje-camera-sensor-idp-usbc.dtbo
+
+dtbo-$(CONFIG_TOPAZ_DTB) += tapas-camera-idp-nopmi-overlay.dtbo \
+				topaz-camera-idp-nopmi-overlay.dtbo
+
+dtbo-$(CONFIG_SAPPHIREN_DTB) += sapphiren-camera-sensor-idp-overlay.dtbo \
+				sapphire-camera-sensor-idp-overlay.dtbo
+
+dtbo-$(CONFIG_CREEK_DTB) += creek-camera-sensor-idp-nopmi-overlay.dtbo
