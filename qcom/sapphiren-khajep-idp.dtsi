@@ -470,3 +470,7 @@
 	qcom,hvdcp2-12v-max-icl-ua = <1500000>;
 	dpdm-supply = <&usb2_phy0>;
 };
+
+&usb0 {
+    extcon = <&pm7250b_pdphy &pm7250b_charger &eud>;
+};
