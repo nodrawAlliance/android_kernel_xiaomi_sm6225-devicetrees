@@ -1,0 +1,98 @@
+&soc {
+	si_pa_L: si_pa_L {
+		owi_mode = <1>;
+		channel_num = <0>;
+		timer_task_hdl = <0>;
+		si,si_pa_disable_pin = <1>;
+		si,si_pa_reset = <&tlmm 106 0x00>;
+		si,si_pa_type = "sia81x9";
+		compatible = "si,sia81xx";
+	};
+};
+
+&qupv3_se1_i2c {
+	fs16xx@34 {
+		status = "okay";
+		compatible = "foursemi,fs16xx";
+		reg = <0x34>;
+		fsm,rst-gpio = <&tlmm 106 0x00>;
+	};
+
+	aw87xxx_pa_59@59 {
+		status = "okay";
+		compatible = "awinic,aw87xxx_pa";
+		dev_index = <0>;
+		aw-rx-port-id = <45106>;
+		reset-gpio = <&tlmm 106 0x00>;
+		reg = <0x59>;
+	};
+
+	sipa_i2c_L: sipa_i2c_L@2b {
+		compatible = "si,sia81xx-i2c";
+		si,sipa-dev = <&si_pa_L>;
+		reg = <0x2b>;
+	};
+};
+
+&wcd937x_codec {
+    qcom,cdc-micbias1-mv = <2700>;
+    qcom,cdc-micbias2-mv = <2700>;
+    qcom,cdc-micbias3-mv = <2700>;
+};
+
+&bengal_snd {
+    si,sia81xx-aux-devs-prefix = "SpkrMonoL";
+    si,sia81xx-aux-devs = <&si_pa_L>;
+    si,sia81xx-max-num = <1>;
+    qcom,wsa-max-devs = <0>;
+
+	asoc-codec  = <&stub_codec>, <&bolero_cdc>,
+			<&wcd937x_codec>;
+	asoc-codec-names = "msm-stub-codec.1", "bolero-codec",
+			"wcd937x_codec";
+
+    qcom,audio-routing =
+    	"AMIC1", "Analog Mic1",
+    	"AMIC1", "MIC BIAS1",
+    	"AMIC2", "Analog Mic2",
+    	"AMIC2", "MIC BIAS2",
+    	"AMIC3", "Analog Mic3",
+    	"AMIC3", "MIC BIAS3",
+    	"TX DMIC0", "Digital Mic0",
+    	"TX DMIC0", "MIC BIAS1",
+    	"TX DMIC1", "Digital Mic1",
+    	"TX DMIC1", "MIC BIAS1",
+    	"TX DMIC2", "Digital Mic2",
+    	"TX DMIC2", "MIC BIAS3",
+    	"TX DMIC3", "Digital Mic3",
+    	"TX DMIC3", "MIC BIAS3",
+    	"IN1_HPHL", "HPHL_OUT",
+    	"IN2_HPHR", "HPHR_OUT",
+    	"IN3_AUX", "AUX_OUT",
+    	"RX_TX DEC0_INP", "TX DEC0 MUX",
+    	"RX_TX DEC1_INP", "TX DEC1 MUX",
+    	"RX_TX DEC2_INP", "TX DEC2 MUX",
+    	"RX_TX DEC3_INP", "TX DEC3 MUX",
+    	"TX SWR_INPUT", "WCD_TX_OUTPUT",
+    	"VA SWR_INPUT", "VA_SWR_CLK",
+    	"VA SWR_INPUT", "WCD_TX_OUTPUT",
+    	"TX_AIF1 CAP", "VA_SWR_CLK",
+    	"TX_AIF2 CAP", "VA_SWR_CLK",
+    	"TX_AIF3 CAP", "VA_SWR_CLK";
+};
+
+&wsa881x-i2c-codec@e {
+    status = "disable";
+};
+
+&wsa881x-i2c-codec@44 {
+    status = "disable";
+};
+
+&msm_cdc_pinctrl@106 {
+    status = "disable";
+};
+
+&wsa_ana_clk {
+    status = "disable";
+};
