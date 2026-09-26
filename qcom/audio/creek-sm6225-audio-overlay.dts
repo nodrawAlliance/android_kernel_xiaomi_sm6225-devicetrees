@@ -1,0 +1,14 @@
+/dts-v1/;
+/plugin/;
+
+#include <dt-bindings/interrupt-controller/arm-gic.h>
+#include "bengal-audio-overlay.dtsi"
+#include "creek-sm6225-audio.dtsi"
+
+/ {
+	model = "Qualcomm Technologies, Inc. KHAJE IDP nopmi creek";
+	compatible = "qcom,khaje-idp", "qcom,khaje", "qcom,idp";
+	qcom,msm-id = <518 0x10000>, <586 0x10000>;
+	qcom,board-id = <0x20022 0>;
+	qcom,pmic-id = <0x2D 0x0 0x0 0x0>;
+};
