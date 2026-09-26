@@ -63,7 +63,12 @@ dtbo-y += khaje-audio.dtbo \
 		khaje-audio-atp.dtbo \
 		khaje-audio-idp-pm8010.dtbo \
 		khaje-audio-idp-usbc.dtbo \
-		khaje-nowcd.dtbo
+		khaje-nowcd.dtbo \
+		topaz-sm6225-audio-overlay.dtbo \
+		tapas-sm6225-audio-overlay.dtbo \
+		sapphire-sm6225-audio-overlay.dtbo \
+		sapphiren-sm6225-audio-overlay.dtbo \
+		creek-sm6225-audio-overlay.dtbo
 endif
 
 ifeq ($(CONFIG_ARCH_SDXPINN), y)
