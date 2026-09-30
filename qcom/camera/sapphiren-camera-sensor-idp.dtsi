@@ -43,8 +43,93 @@
 	};
 };
 
+&cam_sensor_csi_mux_sel_active {
+	mux {
+		pins = "gpio34";
+		function = "gpio";
+	};
+
+	config {
+		pins = "gpio34";
+		bias-disable;
+		drive-strength = <2>;
+	};
+};
+
+&cam_sensor_csi_mux_sel_suspend {
+	mux {
+		pins = "gpio34";
+		function = "gpio";
+	};
+
+	config {
+		pins = "gpio34";
+		bias-pull-down;
+		drive-strength = <2>;
+		output-low;
+	};
+};
+
 &cam_res_mgr_label {
     gpios = <&pm7250b_gpios 4 0>;
+};
+
+&tlmm {
+	cam_flash_torch_active: cam_flash_torch_active {
+		mux {
+			pins = "gpio93";
+			function = "gpio";
+		};
+
+		config {
+			pins = "gpio93";
+			bias-disable;
+			drive-strength = <2>;
+		};
+	};
+
+	cam_flash_torch_suspend: cam_flash_torch_suspend {
+		phandle = <0x231>;
+
+		mux {
+			pins = "gpio93";
+			function = "gpio";
+		};
+
+		config {
+			pins = "gpio93";
+			bias-pull-down;
+			drive-strength = <2>;
+			output-low;
+		};
+	};
+
+	cam_sensor_vio_active: cam_sensor_vio_active {
+		mux {
+			pins = "gpio54";
+			function = "gpio";
+		};
+
+		config {
+			pins = "gpio54";
+			bias-disable;
+			drive-strength = <2>;
+		};
+	};
+
+	cam_sensor_vio_suspend: cam_sensor_vio_suspend {
+		mux {
+			pins = "gpio54";
+			function = "gpio";
+		};
+
+		config {
+			pins = "gpio54";
+			bias-pull-down;
+			drive-strength = <2>;
+			output-low;
+		};
+	};
 };
 
 &soc {

@@ -2,6 +2,63 @@
 #include <dt-bindings/msm-camera.h>
 #include "xiaomi-sm6225-common.dtsi"
 
+&tlmm {
+	cam_sensor_rear2_vio_active: cam_sensor_rear2_vio_active {
+		mux {
+			pins = "gpio99";
+			function = "gpio";
+		};
+
+		config {
+			pins = "gpio99";
+			bias-disable;
+			drive-strength = <2>;
+		};
+	};
+
+	cam_sensor_rear2_vio_suspend: cam_sensor_rear2_vio_suspend {
+		mux {
+			pins = "gpio99";
+			function = "gpio";
+		};
+
+		config {
+			pins = "gpio99";
+			bias-pull-down;
+			drive-strength = <2>;
+			output-low;
+		};
+	};
+};
+
+
+&cam_sensor_csi_mux_sel_active {
+	mux {
+		pins = "gpio100";
+		function = "gpio";
+	};
+
+	config {
+		pins = "gpio100";
+		bias-disable;
+		drive-strength = <2>;
+	};
+};
+
+&cam_sensor_csi_mux_sel_suspend {
+	mux {
+		pins = "gpio100";
+		function = "gpio";
+	};
+
+	config {
+		pins = "gpio100";
+		bias-pull-down;
+		drive-strength = <2>;
+		output-low;
+	};
+};
+
 &qupv3_se1_i2c {
 	status = "ok";
 

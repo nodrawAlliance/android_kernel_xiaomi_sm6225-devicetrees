@@ -1,0 +1,41 @@
+&tlmm {
+};
+
+&ts_release {
+	mux {
+		pins = "gpio80", "gpio86";
+		function = "gpio";
+	};
+
+	config {
+		pins = "gpio80", "gpio86";
+		drive-strength = <2>;
+		bias-pull-down;
+	};
+};
+
+&ts_reset_active {
+	mux {
+		pins = "gpio86";
+		function = "gpio";
+	};
+
+	config {
+		pins = "gpio86";
+		drive-strength = <8>;
+		bias-pull-up;
+	};
+};
+
+&ts_reset_suspend {
+    mux {
+    	pins = "gpio86";
+    	function = "gpio";
+    };
+
+    config {
+    	pins = "gpio86";
+    	drive-strength = <2>;
+    	bias-pull-down;
+    };
+};

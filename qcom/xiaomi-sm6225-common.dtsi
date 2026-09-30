@@ -1,23 +1,117 @@
 #include <dt-bindings/clock/qcom,gcc-khaje.h>
 
-&qupv3_se4_i2c {
-	status = "ok";
-	qcom,clk-freq-out = <0x61a80>;
-	#address-cells = <1>;
-	#size-cells = <0>;
+&tlmm {
+	pmx_ts_avdd {
+		ts_avdd: ts_avdd {
+			mux {
+				pins = "gpio36";
+				function = "gpio";
+			};
 
-	st_st21nfc@08 {
-		compatible = "st,st21nfc";
-		reg = <8>;
-		st,irq-gpio = <&tlmm 70 0x00>;
-		st,reset-gpio = <&tlmm 69 0x00>;
-		st,clkreq-gpio = <&tlmm 71 0x00>;
-		interrupt-parent = <&tlmm>;
-		interrupts = <70 0x00>;
-		interrupt-names = "nfc_irq";
-		clock-names = "nfc_ref_clk";
-		st,clk_pinctrl;
+			config {
+				pins = "gpio36";
+				drive-strength = <8>;
+				bias-pull-up;
+				output-high;
+			};
+		};
 	};
+
+	qupv3_se4_i2c_pins: qupv3_se4_i2c_pins {
+		qupv3_se4_i2c_active: qupv3_se4_i2c_active {
+			mux {
+				pins = "gpio96", "gpio97";
+				function = "qup4";
+			};
+
+			config {
+				pins = "gpio96", "gpio97";
+				drive-strength = <2>;
+				bias-disable;
+			};
+		};
+
+		qupv3_se4_i2c_sleep: qupv3_se4_i2c_sleep {
+			mux {
+				pins = "gpio96", "gpio97";
+				function = "gpio";
+			};
+
+			config {
+				pins = "gpio96", "gpio97";
+				drive-strength = <2>;
+				bias-pull-up;
+			};
+		};
+	};
+
+	ant-check-pin {
+		ant_check_default: ant_check_default {
+			mux {
+				pins = "gpio107";
+				function = "gpio";
+			};
+
+			config {
+				pins = "gpio107";
+				drive-strength = <2>;
+				bias-pull-up;
+				input-enable;
+				input-debounce = <5000>;
+			};
+		};
+	};
+
+	ant-check-div-pin {
+		ant_check_div_default: ant_check_div_default {
+			mux {
+				pins = "gpio25";
+				function = "gpio";
+			};
+
+			config {
+				pins = "gpio25";
+				bias-pull-up;
+				input-enable;
+				input-debounce = <5000>;
+			};
+		};
+	};
+};
+
+&qupv3_se0_i2c {
+	qupv3_se4_i2c: i2c@4a90000 {
+    	status = "ok";
+    	compatible = "qcom,i2c-geni";
+    	reg = <0x4a90000 0x4000>;
+    	interrupts = <0 331 4>;
+    	#address-cells = <1>;
+    	#size-cells = <0>;
+    	clock-names = "se-clk";
+    	clocks = <&gcc 100>;
+    	interconnect-names = "qup-core", "qup-config", "qup-memory";
+    	interconnects = <257 6 257 514 139 0 140 550 138 23 139 512>;
+    	dmas = <261 0 4 3 64 0 261 1 4 3 64 0>;
+    	dma-names = "tx", "rx";
+    	pinctrl-names = "default", "sleep";
+    	pinctrl-0 = <&qupv3_se4_i2c_active>;
+    	pinctrl-1 = <&qupv3_se4_i2c_sleep>;
+    	qcom,wrapper-core = <&qupv3_0>;
+    	qcom,clk-freq-out = <400000>;
+
+    	st_st21nfc@08 {
+    		compatible = "st,st21nfc";
+    		reg = <8>;
+    		st,irq-gpio = <&tlmm 70 0x00>;
+    		st,reset-gpio = <&tlmm 69 0x00>;
+    		st,clkreq-gpio = <&tlmm 71 0x00>;
+    		interrupt-parent = <&tlmm>;
+    		interrupts = <70 0x00>;
+    		interrupt-names = "nfc_irq";
+    		clock-names = "nfc_ref_clk";
+    		st,clk_pinctrl;
+    	};
+    };
 };
 
 &soc {
@@ -29,6 +123,22 @@
 	thermal-message: thermal-message {
 		board-sensor = "VIRTUAL-SENSOR";
 	};
+
+    ant_check {
+        compatible = "ant_check";
+        interrupt-parent = <&tlmm>;
+        ant_check_gpio = <&tlmm 107 0x00>;
+        pinctrl-names = "default";
+        pinctrl-0 = <&ant_check_default>;
+    };
+
+    ant_check_div {
+        compatible = "ant_check_div";
+        interrupt-parent = <&tlmm>;
+        ant_check_div_gpio = <&tlmm 25 0x00>;
+        pinctrl-names = "default";
+        pinctrl-0 = <&ant_check_div_default>;
+    };
 };
 
 &qupv3_se4_2uart {
