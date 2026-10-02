@@ -79,6 +79,17 @@
 	};
 };
 
+&pm6125_gpios {
+	vib_out_gpio8 {
+		vib_out_gpio8_default: vib_out_gpio8_default {
+			pins = "gpio8";
+			function = "normal";
+			bias-pull-up;
+			power-source = <0>; // 1.8V
+		};
+	};
+};
+
 &qupv3_se0_i2c {
 	qupv3_se4_i2c: i2c@4a90000 {
     	status = "ok";
@@ -139,6 +150,14 @@
         pinctrl-names = "default";
         pinctrl-0 = <&ant_check_div_default>;
     };
+
+	vibrator_gpio {
+		status = "ok";
+		compatible = "qcom,qpnp-vibrator-ldo-tz";
+		pinctrl-names = "default";
+		pinctrl-0 = <&vib_out_gpio8_default>;
+		vib,en-gpio = <&pm6125_gpios 8 1>;
+	};
 };
 
 &qupv3_se4_2uart {

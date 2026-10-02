@@ -1,13 +1,5 @@
-&soc {
-	xiaomi_touch {
-		touch,name = "xiaomi-touch";
-		compatible = "xiaomi-touch";
-		status = "okay";
-	};
-};
-
 &qupv3_se2_i2c {
-	qcom,i2c-touch-active = "synaptics,tcm-i2c";
+	qcom,i2c-touch-active = "focaltech,fts";
 	status = "okay";
 
     synaptics_tcm@20 {
@@ -33,6 +25,9 @@
     };
 
     novatek@62 {
+        status = "ok";
+        compatible = "novatek,NVT-ts";
+        reg = <0x62>;
         panel = <&dsi_nt36672e_fhd_plus_90hz_video &dsi_nt36672e_fhd_plus_120hz_video>;
         novatek,irq-gpio = <&tlmm 80 0x2008>;
         novatek,reset-gpio = <&tlmm 86 0x00>;
@@ -42,12 +37,12 @@
         pinctrl-names = "pmx_ts_active", "pmx_ts_suspend", "pmx_ts_release";
         interrupts = <80 0x2008>;
         interrupt-parent = <&tlmm>;
-        status = "ok";
-        reg = <0x62>;
-        compatible = "novatek,NVT-ts";
     };
 
     focaltech@38 {
+        status = "okay";
+        compatible = "focaltech,fts";
+        reg = <0x38>;
         pinctrl-2 = <&ts_release>;
         pinctrl-1 = <&ts_int_suspend &ts_reset_suspend>;
         pinctrl-0 = <&ts_int_active &ts_reset_active &ts_avdd>;
@@ -60,8 +55,5 @@
         focaltech,avdd-gpio = <&tlmm 36 0x00>;
         interrupts = <80 0x02>;
         interrupt-parent = <&tlmm>;
-        reg = <0x38>;
-        compatible = "focaltech,fts";
-        status = "okay";
     };
 };

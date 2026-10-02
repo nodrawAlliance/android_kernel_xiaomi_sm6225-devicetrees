@@ -149,36 +149,4 @@
 			bias-pull-up;
 		};
 	};
-
-	pmx_lcm1p8en_active: pmx_lcm1p8en_active {
-		lcm1p8en_active: lcm1p8en_active {
-			mux {
-				pins = "gpio54";
-				function = "gpio";
-			};
-
-			config {
-				pins = "gpio54";
-				drive-strength = <2>;
-				bias-pull-up;
-				output-high;
-			};
-		};
-	};
-
-	pmx_lcm1p8en_suspend: pmx_lcm1p8en_suspend {
-		lcm1p8en_suspend: lcm1p8en_suspend {
-			mux {
-				pins = "gpio54";
-				function = "gpio";
-			};
-
-			config {
-				pins = "gpio54";
-				drive-strength = <2>;
-				bias-pull-down;
-				output-low;
-			};
-		};
-	};
 };

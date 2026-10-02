@@ -1,4 +1,33 @@
-&tlmm {
+&soc {
+	xiaomi_touch {
+		touch,name = "xiaomi-touch";
+		compatible = "xiaomi-touch";
+		status = "okay";
+	};
+};
+
+&pm6125_gpios {
+	oled_vci {
+		oled_vci_default: oled_vci_default {
+			pins = "gpio9";
+			function = "normal";
+			input-disable;
+			power-source = <0>; // 1.8V
+			bias-disable;
+			output-high;
+			qcom,drive-strength = <2>;
+		};
+
+		oled_vci_suspend: oled_vci_suspend {
+			pins = "gpio9";
+			function = "normal";
+			input-disable;
+			power-source = <0>; // 1.8V
+			bias-disable;
+			output-low;
+			qcom,drive-strength = <2>;
+		};
+	};
 };
 
 &ts_release {
