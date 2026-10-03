@@ -208,6 +208,14 @@
 
         io-channel-names = "present", "charging_enabled", "status", "sc_battery_present", "sc_vbus_present", "sc_battery_voltage", "sc_battery_current", "sc_battery_temperature", "sc_bus_voltage", "sc_bus_current", "sc_bus_temperature", "sc_die_temperature", "sc_alarm_status", "sc_fault_status", "sc_vbus_error_status", "sc_chip_vendor", "sc_chip_id", "input_suspend", "pd_active", "battery_charging_enabled", "charge_enabled", "ln_status", "ln_present", "ln_constant_charge_voltage", "ln_input_current_limit", "ln_model_name", "ln_charging_enabled", "ln_ti_bypass_mode_enable", "ln_ti_set_bus_protection_for_qc3", "ln_battery_present", "ln_vbus_present", "ln_battery_voltage", "ln_battery_current", "ln_battery_temperture", "ln_bus_voltage", "ln_bus_current", "ln_bus_temperature", "ln_die_temperature", "ln_alarm_status", "ln_fault_status", "ln_ti_reg_status", "ln_hv_charge_enable", "ln_vbus_error_status", "ln_chip_id", "apdo_volt", "apdo_curr";
 	};
+
+	vibrator_gpio {
+		status = "ok";
+		compatible = "qcom,qpnp-vibrator-ldo-tz";
+		pinctrl-names = "default";
+		pinctrl-0 = <&vib_out_gpio8_default>;
+		vib,en-gpio = <&pm6125_gpios 8 1>;
+	};
 };
 
 &qupv3_se1_i2c {

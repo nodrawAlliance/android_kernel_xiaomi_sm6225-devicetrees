@@ -150,3 +150,14 @@
 		};
 	};
 };
+
+&pm6125_gpios {
+	vib_out_gpio8 {
+		vib_out_gpio8_default: vib_out_gpio8_default {
+			pins = "gpio8";
+			function = "normal";
+			bias-pull-up;
+			power-source = <0>; // 1.8V
+		};
+	};
+};
