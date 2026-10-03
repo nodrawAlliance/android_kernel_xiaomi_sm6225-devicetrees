@@ -1,3 +1,21 @@
+&tlmm {
+	pmx_ts_avdd {
+		ts_avdd: ts_avdd {
+			mux {
+				pins = "gpio36";
+				function = "gpio";
+			};
+
+			config {
+				pins = "gpio36";
+				drive-strength = <8>;
+				bias-pull-up;
+				output-high;
+			};
+		};
+	};
+};
+
 &soc {
 	xiaomi_touch {
 		touch,name = "xiaomi-touch";

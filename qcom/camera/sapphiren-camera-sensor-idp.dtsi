@@ -2,6 +2,30 @@
 #include <dt-bindings/msm-camera.h>
 #include "xiaomi-sm6225-common.dtsi"
 
+&pm7250b_gpios {
+	cam_dvdd1 {
+		cam_dvdd1_default: cam_dvdd1_default {
+			pins = "gpio3";
+			function = "normal";
+			input-disable;
+			output-high;
+			bias-disable;
+			power-source = <0>;
+			qcom,drive-strength = <3>;
+		};
+
+		cam_dvdd1_suspend: cam_dvdd1_suspend {
+			pins = "gpio3";
+			function = "normal";
+			input-disable;
+			output-low;
+			bias-disable;
+			power-source = <0>;
+			qcom,drive-strength = <3>;
+		};
+	};
+};
+
 &pm6125_gpios {
 	cam_avdd1 {
 		cam_sensor_avdd1_default: cam_sensor_avdd1_default {

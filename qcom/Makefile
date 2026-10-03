@@ -98,8 +98,8 @@ KHAJE_BASE_DTB += khaje.dtb khajep.dtb khajeq.dtb khajeg.dtb
 KHAJE_BOARDS += \
                  khaje-idp-overlay.dtbo \
                  khaje-qrd-overlay.dtbo \
-		 khaje-qrd-hvdcp3p5-overlay.dtbo \
-		 khaje-qrd-nowcd9375-overlay.dtbo \
+ 		 khaje-qrd-hvdcp3p5-overlay.dtbo \
+ 		 khaje-qrd-nowcd9375-overlay.dtbo \
                  khaje-idp-nopmi-overlay.dtbo \
                  khaje-qrd-nopmi-overlay.dtbo \
                  khaje-idps-display-90hz-overlay.dtbo \
@@ -136,10 +136,12 @@ KHAJE_BOARDS += \
 		 khajeg-idp-usbc-overlay.dtbo \
 		 khajeg-idp-pm8010-overlay.dtbo \
 		 khajeg-idps-display-90hz-overlay.dtbo \
-		 topaz-sm6225-overlay.dtbo \
-		 tapas-sm6225-overlay.dtbo \
-		 sapphiren-sm6225-overlay.dtbo \
-		 sapphire-sm6225-overlay.dtbo \
+		 topaz-khaje-idp-nopmi-overlay.dtbo \
+		 topaz-sm5602-khaje-idp-nopmi-overlay.dtbo \
+		 tapas-khaje-idp-nopmi-overlay.dtbo \
+		 tapas-sm5602-khaje-idp-nopmi-overlay.dtbo \
+		 sapphiren-khajep-idp-overlay.dtbo \
+		 sapphire-khajep-idp-overlay.dtbo \
 		 creek-sm6225-overlay.dtbo
 
 bengal-dtb-$(CONFIG_ARCH_KHAJE) += \

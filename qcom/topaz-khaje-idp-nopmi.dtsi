@@ -135,7 +135,7 @@
 						   "ds_chip_ok", "ds_authen_result";
 	};
 
-	onewire_gpio {
+	onewire_gpio: onewire_gpio {
 		compatible = "xiaomi,onewire_gpio";
 		label = "xm_onewire";
 		xiaomi,version = <1>;
@@ -143,8 +143,8 @@
 		xiaomi,gpio_number = <108>;
 		mi,onewire-gpio-cfg-addr = <0x96c000 4>;
 		pinctrl-names = "onewire_active", "onewire_sleep";
-		pinctrl-0 = <&onewire_active>;
-		pinctrl-1 = <&onewire_sleep>;
+		pinctrl-0 = <&onewire_gpio_active>;
+		pinctrl-1 = <&onewire_gpio_sleep>;
 		status = "ok";
 	};
 

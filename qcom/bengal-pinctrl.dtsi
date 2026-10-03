@@ -377,6 +377,34 @@
 			};
 		};
 
+    	qupv3_se4_i2c_pins {
+    		qupv3_se4_i2c_active: qupv3_se4_i2c_active {
+    			mux {
+    				pins = "gpio96", "gpio97";
+    				function = "qup4";
+    			};
+
+    			config {
+    				pins = "gpio96", "gpio97";
+    				drive-strength = <2>;
+    				bias-disable;
+    			};
+    		};
+
+    		qupv3_se4_i2c_sleep: qupv3_se4_i2c_sleep {
+    			mux {
+    				pins = "gpio96", "gpio97";
+    				function = "gpio";
+    			};
+
+    			config {
+    				pins = "gpio96", "gpio97";
+    				drive-strength = <2>;
+    				bias-pull-up;
+    			};
+    		};
+    	};
+
 		nfc {
 			nfc_int_active: nfc_int_active {
 				/* active state */

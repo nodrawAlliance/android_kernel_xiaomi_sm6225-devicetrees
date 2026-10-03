@@ -124,7 +124,7 @@
 		};
 	};
 
-	onewire_gpio_active {
+	onewire_gpio_active: onewire_gpio_active {
 		mux {
 			pins = "gpio108";
 			function = "gpio";
@@ -137,7 +137,7 @@
 		};
 	};
 
-	onewire_gpio_sleep {
+	onewire_gpio_sleep: onewire_gpio_sleep {
 		mux {
 			pins = "gpio108";
 			function = "gpio";

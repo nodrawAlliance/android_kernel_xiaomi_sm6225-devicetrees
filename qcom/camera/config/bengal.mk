@@ -10,7 +10,7 @@ dtbo-$(CONFIG_ARCH_KHAJE) += khajeg-camera-idp.dtbo \
 				khaje-camera-sensor-qrd-nowcd9375.dtbo \
 				khaje-camera-sensor-idps-display-90hz.dtbo \
 				khaje-camera-sensor-idp-usbc.dtbo \
-				topaz-sm5602-camera-sensor-idp-overlay.dtbo \
 				topaz-camera-sensor-idp-overlay.dtbo \
-				tapas-sm5602-camera-sensor-idp-overlay.dtbo \
-				tapas-camera-sensor-idp-overlay.dtbo
+				tapas-camera-sensor-idp-overlay.dtbo \
+				sapphiren-camera-sensor-idp-overlay.dtbo \
+				sapphire-camera-sensor-idp-overlay.dtbo

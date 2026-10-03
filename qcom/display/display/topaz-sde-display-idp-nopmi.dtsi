@@ -1,5 +1,5 @@
-#include "dsi-panel-m7-38-0c-0a-fhdp-video.dtsi"
-#include "dsi-panel-m7-38-0c-0b-fhdp-video.dtsi"
+#include "dsi-panel-m7_38_0c_0a_fhdp_video.dtsi"
+#include "dsi-panel-m7_38_0c_0b_fhdp_video.dtsi"
 #include "xiaomi-sm6225-common.dtsi"
 #include "touchscreen_m7.dtsi"
 #include "khaje-sde-display-idp-nopmi.dtsi"

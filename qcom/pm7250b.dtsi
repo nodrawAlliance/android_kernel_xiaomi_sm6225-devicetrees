@@ -20,12 +20,99 @@
 			#address-cells = <1>;
 			#size-cells = <1>;
 			#cooling-cells = <2>;
+			#io-channel-cells = <1>;
 
 			qcom,thermal-mitigation = <5400000 4500000 4000000
 				3500000 3000000 2500000 2000000 1500000
-				1000000 500000>;
+				1000000 500000 800000 800000
+				800000 800000 800000 800000
+				800000 800000>;
 			qcom,hvdcp2-max-icl-ua = <2000000>;
 			qcom,hvdcp2-12v-max-icl-ua = <1500000>;
+
+			status = "okay";
+			qcom,battery-data = <&mtp_batterydata>;
+			qcom,sec-charger-config = <0>;
+			qcom,auto-recharge-soc = <95>;
+			qcom,auto-recharge-vbat-mv = <100>;
+			qcom,step-charging-enable;
+			qcom,sw-jeita-enable;
+			qcom,distinguish-qc-class-ab;
+			qcom,charger-temp-max = <800>;
+			qcom,smb-temp-max = <800>;
+			qcom,suspend-input-on-debug-batt;
+			qcom,fcc-stepping-enable;
+			qcom,fcc-step-delay-ms = <100>;
+			qcom,fcc-step-size-ua = <100000>;
+			qcom,smb-internal-pull-kohm = <0>;
+			qcom,en-skin-therm-mitigation;
+			qcom,hvdcp3-standalone-config;
+			qcom,chg-term-current-ma = <(-250)>;
+			qcom,fcc-max-ua = <6000000>;
+			qcom,fv-max-uv = <4500000>;
+			qcom,disable-suspend-on-collapse;
+			dpdm-supply = <&usb2_phy0>;
+
+			mi,use_third_cp;
+			mi,support-ffc;
+
+			io-channels =
+				<&pm7250b_vadc ADC5_USB_IN_V_16>,
+				<&pm7250b_vadc ADC5_USB_IN_I>,
+				<&pm7250b_vadc ADC5_CHG_TEMP>,
+				<&pm7250b_vadc ADC5_DIE_TEMP>,
+				<&pm7250b_vadc ADC5_AMUX_THM1_100K_PU>,
+				<&pm7250b_vadc ADC5_SBUx>,
+				<&pm7250b_vadc ADC5_VPH_PWR>,
+				<&pm7250b_vadc ADC5_AMUX_THM1_100K_PU>,
+				<&pm7250b_qg   0x4b>,
+				<&pm7250b_qg   0xa2>,
+				<&pm7250b_qg   0x46>,
+				<&pm7250b_qg   0x45>,
+				<&pm7250b_qg   0x42>,
+				<&pm7250b_qg   0x47>,
+				<&pm7250b_qg   0x5d>,
+				<&pm7250b_qg   0x4e>,
+				<&pm7250b_qg   0x44>,
+				<&pm7250b_qg   0x5b>,
+				<&pm7250b_qg   0x48>,
+				<&pm7250b_qg   0x2d>,
+				<&pm7250b_qg   0x53>,
+				<&pm7250b_qg   0x49>,
+				<&pm7250b_qg   0x52>,
+				<&pm7250b_qg   0x54>,
+				<&pm7250b_qg   0x56>,
+				<&pm7250b_qg   0xc1>,
+				<&sc8541       0x98>,
+				<&sc8541       0x9d>,
+				<&auth_battery 0xb5>,
+				<&auth_battery 0xb4>,
+				<&auth_battery 0xb9>,
+				<&auth_battery 0xbb>,
+				<&bq25960      0x98>,
+				<&bq25960      0x9d>,
+				<&pm7250b_qg   0xa0>,
+				<&pm7250b_qg   0xa1>,
+				<&pm7250b_qg   0x9f>,
+				<&pm7250b_qg   0x50>,
+				<&bq25960      0xc4>,
+				<&pm7250b_charger 0xc5>;
+
+			io-channel-names =
+				"usb_in_voltage", "usb_in_current", "chg_temp",
+				"die_temp", "conn_temp", "sbux_res", "vph_voltage",
+				"skin_temp", "resistance_id", "fastcharge_mode",
+				"voltage_now", "temp", "capacity", "voltage_ocv",
+				"voltage_avg", "debug_battery", "real_capacity",
+				"cc_soc", "current_now", "voltage_max",
+				"charge_full", "charge_counter", "cycle_count",
+				"charge_full_design", "time_to_full_now",
+				"ffc_chg_termination_current", "sc_bus_current",
+				"sc_manufacturer", "auth_batt_id",
+				"auth_authen_result", "auth_manufacturer",
+				"auth_chip_ok", "bq_bus_current", "bq_manufacturer",
+				"soc_decimal", "soc_decimal_rate", "shutdown_delay",
+				"batt_full_current", "bq_set_acdrv", "recharg_mode";
 
 			qcom,chgr@1000 {
 				reg = <0x1000>;
@@ -197,9 +284,41 @@
 					  "fr-swap";
 			#io-channel-cells = <1>;
 
-			qcom,default-sink-caps = <5000 3000>, /* 5V @ 3A */
-						 <9000 3000>, /* 9V @ 3A */
-						 <12000 2250>; /* 12V @ 2.25A */
+			qcom,default-sink-caps = <5000 3000>,
+						 <9000 3000>,
+						 <12000 2250>;
+
+			vdd-pdphy-supply = <&pm6125_l15>;
+			vbus-supply = <&pm7250b_smb5_vbus>;
+			vconn-supply = <&pm7250b_smb5_vconn>;
+
+			mi,pd_curr_limit = <1>;
+			mi,limit_pd_unverified_pps_vbus = <1>;
+			mi,pd_unverified_pps_max_vbus_limit = <9500000>;
+
+			io-channels =
+				<&pm7250b_charger 0x04>,
+				<&pm7250b_charger 0x03>,
+				<&pm7250b_charger 0x0d>,
+				<&pm7250b_charger 0x02>,
+				<&pm7250b_charger 0x1f>,
+				<&pm7250b_charger 0x1d>,
+				<&pm7250b_charger 0x1e>,
+				<&pm7250b_charger 0x00>,
+				<&pm7250b_charger 0x20>,
+				<&pm7250b_charger 0x0c>,
+				<&pm7250b_charger 0x0b>,
+				<&pm7250b_charger 0x0a>,
+				<&pm7250b_charger 0x01>,
+				<&pm7250b_charger 0x07>;
+			io-channel-names =
+				"pd_active", "typec_cc_orientation",
+				"connector_type", "typec_power_role",
+				"pd_usb_suspend_supported", "typec_src_rp",
+				"pd_in_hard_reset", "pr_current_max",
+				"pr_swap", "pd_voltage_min",
+				"pd_voltage_max", "real_type",
+				"typec_mode", "pe_start";
 		};
 
 		pm7250b_tz: qcom,temp-alarm@2400 {
@@ -216,13 +335,65 @@
 			compatible = "qcom,pm7250b-qg";
 			#address-cells = <1>;
 			#size-cells = <1>;
+			#io-channel-cells = <1>;
 
-			qcom,vbatt-cutoff-mv = <3200>;
-			qcom,vbatt-low-mv = <3300>;
-			qcom,vbatt-low-cold-mv = <3700>;
+			depends-on-supply = <&pm7250b_rtc>;
+
+			qcom,vbatt-cutoff-mv = <3400>;
+			qcom,vbatt-low-mv = <3500>;
+			qcom,vbatt-low-cold-mv = <3800>;
 			qcom,vbatt-empty-mv = <3000>;
 			qcom,vbatt-empty-cold-mv = <3000>;
 			qcom,s3-entry-fifo-length = <2>;
+
+			status = "okay";
+			qcom,battery-data = <&mtp_batterydata>;
+			qcom,qg-iterm-ma = <300>;
+			qcom,hold-soc-while-full;
+			qcom,linearize-soc;
+			qcom,cl-feedback-on;
+			qcom,tcss-enable;
+			qcom,fvss-enable;
+			qcom,fvss-vbatt-mv = <3600>;
+			qcom,bass-enable;
+			qcom,s3-entry-ibat-ua = <25000>;
+			qcom,s3-exit-ibat-ua = <45000>;
+			qcom,qg-ext-sns;
+			qcom,shutdown-delay-enable;
+
+			qcom,soc_decimal_rate = <
+				0  32
+				10 30
+				20 28
+				30 28
+				40 28
+				50 28
+				60 28
+				70 28
+				80 28
+				90 26
+				95 10
+				99 5>;
+
+			io-channels =
+				<&pm7250b_vadc ADC5_BAT_THERM_30K_PU>,
+				<&pm7250b_vadc ADC5_BAT_ID_100K_PU>,
+				<&pm7250b_charger 0x37>,
+				<&pm7250b_charger 0x3f>,
+				<&pm7250b_charger 0x40>,
+				<&pm7250b_charger 0x39>,
+				<&sc8541       0x76>,
+				<&sc8541       0x94>,
+				<&bq25960      0x76>,
+				<&bq25960      0x94>,
+				<&pm7250b_charger 0x0a>;
+			io-channel-names =
+				"batt-therm", "batt-id",
+				"input_current_limited", "recharge_soc",
+				"force_recharge", "charge_done",
+				"charging_enabled", "sc_battery_voltage",
+				"bq_charging_enabled", "bq_battery_voltage",
+				"real_type";
 
 			qcom,qgauge@4800 {
 				status = "okay";
@@ -279,7 +450,6 @@
 			#io-channel-cells = <1>;
 			io-channel-ranges;
 
-			/* Channel node */
 			ref_gnd@0 {
 				reg = <ADC5_REF_GND>;
 				label = "ref_gnd";
@@ -378,7 +548,6 @@
 				label = "chg_mid";
 				qcom,pre-scaling = <1 6>;
 			};
-
 		};
 
 		pm7250b_adc_tm: adc_tm@3500 {
@@ -389,6 +558,7 @@
 			#address-cells = <1>;
 			#size-cells = <0>;
 			#thermal-sensor-cells = <1>;
+			status = "okay";
 		};
 
 		pm7250b_bcl: bcl@1d00 {
@@ -518,7 +688,7 @@
 				hysteresis = <1>;
 				type = "passive";
 			};
-		};
+        };
 	};
 
 	socd {
