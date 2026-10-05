@@ -13,4 +13,5 @@ dtbo-$(CONFIG_ARCH_KHAJE) += khajeg-camera-idp.dtbo \
 				topaz-camera-sensor-idp-overlay.dtbo \
 				tapas-camera-sensor-idp-overlay.dtbo \
 				sapphiren-camera-sensor-idp-overlay.dtbo \
-				sapphire-camera-sensor-idp-overlay.dtbo
+				sapphire-camera-sensor-idp-overlay.dtbo \
+				creek-camera-sensor-idp-nopmi-overlay.dtbo
