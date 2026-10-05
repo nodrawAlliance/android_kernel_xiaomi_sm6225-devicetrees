@@ -53,7 +53,8 @@ dtbo-$(CONFIG_ARCH_KHAJE) += display/khaje-sde.dtbo \
 		display/topaz-sde-display-idp-nopmi-overlay.dtbo \
 		display/tapas-sde-display-idp-nopmi-overlay.dtbo \
 		display/sapphiren-sde-display-idp-overlay.dtbo \
-		display/sapphire-sde-display-idp-overlay.dtbo
+		display/sapphire-sde-display-idp-overlay.dtbo \
+		display/creek-sde-display-idp-nopmi-overlay.dtbo
 
 dtbo-$(CONFIG_ARCH_MONACO) += display/monaco-sde.dtbo \
 		display/monaco-sde-display-idp-overlay.dtbo \
