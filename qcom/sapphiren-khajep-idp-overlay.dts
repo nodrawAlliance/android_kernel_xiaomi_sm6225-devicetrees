@@ -4,6 +4,7 @@
 #include <dt-bindings/interrupt-controller/arm-gic.h>
 #include "khajep-idp.dtsi"
 #include "sapphiren-khajep-idp.dtsi"
+#include "xiaomi-sm6225-nfc.dtsi"
 
 / {
 	model = "Qualcomm Technologies, Inc. Khaje IDP sapphiren";

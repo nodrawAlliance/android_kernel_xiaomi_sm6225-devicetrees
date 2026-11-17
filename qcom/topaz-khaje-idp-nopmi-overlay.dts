@@ -4,6 +4,7 @@
 #include <dt-bindings/interrupt-controller/arm-gic.h>
 #include "khaje-idp-nopmi.dtsi"
 #include "topaz-khaje-idp-nopmi.dtsi"
+#include "xiaomi-sm6225-nfc.dtsi"
 
 / {
 	model = "Qualcomm Technologies, Inc. KHAJE IDP nopmi topaz";
