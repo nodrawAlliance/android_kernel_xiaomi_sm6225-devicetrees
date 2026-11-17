@@ -1,4 +1,4 @@
-&soc {
+&mdss_mdp {
 	dsi_m7_38_0c_0a_video: qcom,mdss_dsi_panel_m7_38_0c_0a_fhdp_video {
 		qcom,platform-reset-gpio = <&tlmm 82 0x00>; // HEX: 0x52
 		qcom,mdss-brightness-max-level = <2047>;
