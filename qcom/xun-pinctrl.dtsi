@@ -25,7 +25,27 @@
             input-enable;
         };
     };
-}
+
+    bkl_pins {
+        bkl_active: bkl_active {
+            pins = "gpio102";
+            function = "normal";
+            bias-disable;
+            power-source = <0>; // 1.8V
+            output-high;
+            input-disable;
+        };
+
+        bkl_sleep: bkl_sleep {
+            pins = "gpio102";
+            function = "normal";
+            bias-disable;
+            power-source = <0>; // 1.8V
+            output-low;
+            input-disable;
+        };
+    };
+};
 
 &qupv3_se2_i2c_pins {
     pmx_wusb3801_active {
@@ -57,4 +77,4 @@
             };
         };
     };
-}
+};

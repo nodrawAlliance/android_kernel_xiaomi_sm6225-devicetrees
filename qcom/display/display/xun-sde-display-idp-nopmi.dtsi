@@ -1,0 +1,154 @@
+#include "khaje-sde-display-common.dtsi"
+#include "dsi-panel-m84-36-02-0a-fhdp-video.dtsi"
+#include "dsi-panel-m84-35-03-0b-fhdp-video.dtsi"
+#include "dsi-panel-m84-42-03-0c-fhdp-video.dtsi"
+#include "touchscreen_m84.dtsi"
+
+&tlmm {
+    pmx_lcm_enp_active {
+        lcm_enp_active: lcm_enp_active {
+            mux {
+                pins = "gpio83";
+                function = "gpio";
+            };
+
+            config {
+                pins = "gpio83";
+                drive-strength = <2>;
+                bias-pull-up;
+                output-high;
+            };
+        };
+    };
+
+    pmx_lcm_enp_suspend {
+        lcm_enp_suspend: lcm_enp_suspend {
+            mux {
+                pins = "gpio83";
+                function = "gpio";
+            };
+
+            config {
+                pins = "gpio83";
+                drive-strength = <2>;
+                bias-pull-down;
+                output-low;
+            };
+        };
+    };
+
+    pmx_lcm_enn_active {
+        lcm_enn_active: lcm_enn_active {
+            mux {
+                pins = "gpio104";
+                function = "gpio";
+            };
+
+            config {
+                pins = "gpio104";
+                drive-strength = <2>;
+                bias-pull-up;
+                output-high;
+            };
+        };
+    };
+
+    pmx_lcm_enn_suspend {
+        lcm_enn_suspend: lcm_enn_suspend {
+            mux {
+                pins = "gpio104";
+                function = "gpio";
+            };
+
+            config {
+                pins = "gpio104";
+                drive-strength = <2>;
+                bias-pull-down;
+                output-low;
+            };
+        };
+    };
+};
+
+&sde_dsi {
+    qcom-dsi-default-panel = <&dsi_panel_m84_36_02_0a_fhdp_video>;
+
+    vddio-supply = <&L9A>;
+    clock-names = "pll_byte_clk0", "pll_dsi_clk0", "mdp_core_clk";
+    clocks = <&mdss_dsi_phy0 0x00 &mdss_dsi_phy0 0x01 &dispcc 0x08>;
+
+    pinctrl-0 = <&sde_dsi_active &sde_te_active &lcm_enp_active &lcm_enn_active>;
+    pinctrl-1 = <&sde_dsi_suspend &sde_te_suspend &lcm_enp_suspend &lcm_enn_suspend>;
+};
+
+&soc {
+    thermal-screen {
+        panel = <&dsi_panel_m84_36_02_0a_fhdp_video &dsi_panel_m84_35_03_0b_fhdp_video>;
+    };
+};
+
+&dsi_panel_m84_36_02_0a_fhdp_video {
+    qcom,dsi-select-clocks = "pll_byte_clk0", "pll_dsi_clk0";
+    qcom,mdss-dsi-display-timings {
+        timing@0 {
+            qcom,mdss-dsi-panel-phy-timings = [
+                00 17 05 05 14 1f 06 06 06 02 04 00
+                14 0b
+            ];
+            qcom,default-topology-index = <0>;
+            qcom,display-topology = <1 1 1>;
+        };
+    };
+};
+
+&dsi_panel_m84_35_03_0b_fhdp_video {
+    qcom,dsi-select-clocks = "pll_byte_clk0", "pll_dsi_clk0";
+    qcom,mdss-dsi-display-timings {
+        timing@0 {
+            qcom,mdss-dsi-panel-phy-timings = [
+                00 17 06 05 15 1f 06 06 07 02 04 00
+                15 0b
+            ];
+            qcom,default-topology-index = <0>;
+            qcom,display-topology = <1 1 1>;
+        };
+    };
+};
+
+&dsi_panel_m84_42_03_0c_fhdp_video {
+    qcom,dsi-select-clocks = "pll_byte_clk0", "pll_dsi_clk0";
+    qcom,mdss-dsi-display-timings {
+        timing@0 {
+            qcom,mdss-dsi-panel-phy-timings = [
+                00 17 06 05 15 1f 06 06 07 02 04 00
+                15 0b
+            ];
+            qcom,default-topology-index = <0>;
+            qcom,display-topology = <1 1 1>;
+        };
+    };
+};
+
+&dsi_panel_m84_36_02_0a_fhdp_video {
+    qcom,panel-supply-entries = <&dsi_panel_pwr_supply_no_labibb>;
+    qcom,platform-reset-gpio = <&tlmm 82 0x00>;
+	qcom,mdss-dsi-bl-min-level = <1>;
+	qcom,mdss-dsi-bl-max-level = <2047>;
+	qcom,mdss-dsi-bl-pmic-control-type = "bl_ctrl_dcs";
+};
+
+&dsi_panel_m84_35_03_0b_fhdp_video {
+    qcom,panel-supply-entries = <&dsi_panel_pwr_supply_no_labibb>;
+    qcom,platform-reset-gpio = <&tlmm 82 0x00>;
+	qcom,mdss-dsi-bl-min-level = <1>;
+	qcom,mdss-dsi-bl-max-level = <2047>;
+	qcom,mdss-dsi-bl-pmic-control-type = "bl_ctrl_dcs";
+};
+
+&dsi_panel_m84_42_03_0c_fhdp_video {
+    qcom,panel-supply-entries = <&dsi_panel_pwr_supply_no_labibb>;
+    qcom,platform-reset-gpio = <&tlmm 82 0x00>;
+	qcom,mdss-dsi-bl-min-level = <1>;
+	qcom,mdss-dsi-bl-max-level = <2047>;
+	qcom,mdss-dsi-bl-pmic-control-type = "bl_ctrl_dcs";
+};
