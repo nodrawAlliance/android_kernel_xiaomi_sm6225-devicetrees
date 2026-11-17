@@ -8,7 +8,7 @@
 / {
 	model = "Qualcomm Technologies, Inc. KHAJE IDP nopmi topaz";
 	compatible = "qcom,khaje-idp", "qcom,khaje", "qcom,idp";
-	qcom,msm-id = <0x206 0x10000>;
+	qcom,msm-id = <586 0x10000>;
 	qcom,board-id = <0x30022 0x00>;
 	qcom,pmic-id = <0x2D 0x00 0x00 0x00>;
 };
