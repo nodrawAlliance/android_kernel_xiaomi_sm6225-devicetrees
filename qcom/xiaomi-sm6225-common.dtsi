@@ -36,7 +36,7 @@
 };
 
 &soc {
-	simtray {
+	simtray: simtray {
 		compatible = "xiaomi,simtray-status";
 		status-gpio = <&tlmm 79 0x00>;
 	};

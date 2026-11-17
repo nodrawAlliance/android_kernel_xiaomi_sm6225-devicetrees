@@ -1,0 +1,60 @@
+&tlmm {
+    sc2150_int_n: sc2150_int_n {
+        mux {
+            pins = "gpio93";
+            function = "gpio";
+        };
+
+        config {
+            pins = "gpio93";
+            drive-strength = <2>;
+            bias-pull-up;
+        };
+    };
+
+    bq2589x_int_default: bq2589x_int_default {
+        mux {
+            pins = "gpio84";
+            function = "gpio";
+        };
+
+        config {
+            pins = "gpio84";
+            drive-strength = <2>;
+            bias-pull-up; // PULL UP
+            input-enable;
+        };
+    };
+}
+
+&qupv3_se2_i2c_pins {
+    pmx_wusb3801_active {
+        wusb3801_active: wusb3801_active {
+            mux {
+                pins = "gpio93";
+                function = "gpio";
+            };
+
+            config {
+                pins = "gpio93";
+                drive-strength = <8>;
+                bias-pull-up;
+            };
+        };
+    };
+
+    pmx_wusb3801_suspend {
+        wusb3801_suspend: wusb3801_suspend {
+            mux {
+                pins = "gpio93";
+                function = "gpio";
+            };
+
+            config {
+                pins = "gpio93";
+                drive-strength = <2>;
+                bias-pull-down;
+            };
+        };
+    };
+}

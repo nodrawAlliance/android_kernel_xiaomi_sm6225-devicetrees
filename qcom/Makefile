@@ -137,7 +137,11 @@ KHAJE_BOARDS += \
 		 khajeg-idp-pm8010-overlay.dtbo \
 		 khajeg-idps-display-90hz-overlay.dtbo
 
-ifeq ($(CONFIG_TOPAZ_DTB),y)
+ifeq ($(CONFIG_XUN_DTB),y)
+XIAOMI_KHAJE_BOARDS += \
+		xun-khaje-idp-nopmi-overlay.dtbo \
+		xun-sm5602-khaje-idp-nopmi-overlay.dtbo
+else ifeq ($(CONFIG_TOPAZ_DTB),y)
 XIAOMI_KHAJE_BOARDS += \
 		topaz-khaje-idp-nopmi-overlay.dtbo \
 		topaz-sm5602-khaje-idp-nopmi-overlay.dtbo \
