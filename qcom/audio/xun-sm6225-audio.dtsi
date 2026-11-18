@@ -1,0 +1,97 @@
+#include "xiaomi-sm6225-common.dtsi"
+
+&soc {
+    si_pa_L_one: si_pa_L_one {
+        channel_num = <0>;
+        si,si_pa_disable_pin = <1>;
+        si,si_pa_type = "sia8159";
+        compatible = "si,sia81xx";
+    };
+
+    si_pa_L_two: si_pa_L_two {
+        channel_num = <1>;
+        si,si_pa_disable_pin = <1>;
+        si,si_pa_type = "sia8159";
+        compatible = "si,sia81xx";
+    };
+
+    si_pa_R_one: si_pa_R_one {
+        channel_num = <2>;
+        si,si_pa_disable_pin = <1>;
+        si,si_pa_type = "sia8159";
+        compatible = "si,sia81xx";
+    };
+
+    si_pa_R_two: si_pa_R_two {
+        channel_num = <3>;
+        si,si_pa_disable_pin = <1>;
+        si,si_pa_type = "sia8159";
+        compatible = "si,sia81xx";
+    };
+};
+
+&qupv3_se2_i2c {
+    fs16xx@34 {
+        reg = <0x34>;
+        fsm,dummy-addr = [36];
+        fsm,rst-gpio = <&tlmm 0x46 0x00>;
+        compatible = "foursemi,fs16xx";
+        status = "okay";
+    };
+
+    fs16xx@35 {
+        reg = <0x35>;
+        fsm,dummy-addr = [37];
+        fsm,rst-gpio = <&tlmm 0x46 0x00>;
+        compatible = "foursemi,fs16xx";
+        status = "okay";
+    };
+
+    sipa_i2c_R: sipa_i2c_R@one {
+        si,sipa-dev = <&si_pa_R_one>;
+        reg = <0x28>;
+        compatible = "si,sia81xx-i2c";
+    };
+
+    sipa_i2c_R: sipa_i2c_R@two {
+        si,sipa-dev = <&si_pa_R_two>;
+        reg = <0x29>;
+        compatible = "si,sia81xx-i2c";
+    };
+};
+
+&qupv3_se1_i2c {
+    fs16xx@34 {
+        reg = <0x34>;
+        fsm,dummy-addr = [34];
+        fsm,rst-gpio = <&tlmm 0x6a 0x00>;
+        compatible = "foursemi,fs16xx";
+        status = "okay";
+    };
+
+    fs16xx@35 {
+        reg = <0x35>;
+        fsm,dummy-addr = [35];
+        fsm,rst-gpio = <&tlmm 0x6a 0x00>;
+        compatible = "foursemi,fs16xx";
+        status = "okay";
+    };
+
+    sipa_i2c_L: sipa_i2c_L@one {
+        si,sipa-dev = <&si_pa_L_one>;
+        reg = <0x28>;
+        compatible = "si,sia81xx-i2c";
+    };
+
+    sipa_i2c_L: sipa_i2c_L@two {
+        si,sipa-dev = <&si_pa_L_two>;
+        reg = <0x29>;
+        compatible = "si,sia81xx-i2c";
+    };
+}
+
+&sound {
+    si,sia81xx-aux-devs-prefix = "SpkrLeft_One", "SpkrLeft_Two", "SpkrRight_One", "SpkrRight_Two";
+    si,sia81xx-aux-devs = <&si_pa_L_one &si_pa_L_two &si_pa_R_one &si_pa_R_two>;
+    si,sia81xx-max-num = <4>;
+}
