@@ -11,6 +11,8 @@ dtbo-$(CONFIG_ARCH_KHAJE) += khajeg-camera-idp.dtbo \
 				khaje-camera-sensor-idps-display-90hz.dtbo \
 				khaje-camera-sensor-idp-usbc.dtbo
 
+dtbo-$(CONFIG_XUN_DTB) += xun-camera-sensor-idp-overlay.dtbo
+
 dtbo-$(CONFIG_TOPAZ_DTB) += tapas-camera-idp-nopmi-overlay.dtbo \
 				topaz-camera-idp-nopmi-overlay.dtbo
 
