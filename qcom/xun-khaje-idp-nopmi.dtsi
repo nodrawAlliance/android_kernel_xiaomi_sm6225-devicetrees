@@ -1,6 +1,6 @@
-#include "xun-pinctrl.dtsi"
-#include "xiaomi-sm6225-common.dtsi"
 #include <dt-bindings/iio/qti_power_supply_iio.h>
+#include <dt-bindings/clock/qcom,gcc-khaje.h>
+#include "xun-pinctrl.dtsi"
 
 &qupv3_se1_i2c {
 	#address-cells = <1>;
@@ -8,9 +8,9 @@
     status = "ok";
 
     bkl-bl@11 {
-        bkl,hwen-gpio = <&tlmm 0x66 0x00>;
-        pinctrl-1 = <0xffffffff>;
-        pinctrl-0 = <0xffffffff>;
+        bkl,hwen-gpio = <&tlmm 102 GPIO_ACTIVE_HIGH>;
+        pinctrl-1 = <&bkl_sleep>;
+        pinctrl-0 = <&bkl_active>;
         pinctrl-names = "bkl_active", "bkl_sleep";
         reg = <0x11>;
         compatible = "bkl,bkl-bl";
@@ -25,7 +25,7 @@
         sc-tcpc,rp_level = <0>;
         sc-tcpc,vconn_supply = <0>;
         sc-tcpc,notifier_supply_num = <2>;
-        sc2150,intr_gpio = <&tlmm 93 0x00>;
+        sc2150,intr_gpio = <&tlmm 93 GPIO_ACTIVE_HIGH>;
         sc2150,intr_gpio_num = <93>;
         pinctrl-names = "default";
         pinctrl-0 = <&sc2150_int_n>;
@@ -92,7 +92,7 @@
         interrupt-parent = <&tlmm>;
         interrupts = <84 0x00>;
         pinctrl-names = "default";
-        intr-gpio = <&tlmm 84 0x00>;
+        intr-gpio = <&tlmm 84 GPIO_ACTIVE_HIGH>;
         dpdm-supply = <&usb2_phy0>;
         ti,bq2589x,vbus-volt-high-level = <0x21fc>;
         ti,bq2589x,vbus-volt-low-level = <0x1130>;
@@ -142,7 +142,7 @@
         reg = <0x55>;
         interrupt-parent = <&tlmm>;
         interrupts = <0x22 0x02>;
-        qcom,irq-gpio = <&tlmm 0x22 0x00>;
+        qcom,irq-gpio = <&tlmm 0x22 GPIO_ACTIVE_HIGH>;
         sm,en_temp_ex;
         sm,en_batt_det;
         sm,shutdown-delay-enable;
@@ -170,6 +170,15 @@
 };
 
 &soc {
+    simtray {
+        compatible = "xiaomi,simtray-status";
+        status-gpio = <&tlmm 88 GPIO_ACTIVE_HIGH>;
+    };
+
+	thermal-message {
+		board-sensor = "VIRTUAL-SENSOR";
+	};
+
     rpm: rt-pd-manager {
         compatible = "richtek,rt-pd-manager";
     };
@@ -238,6 +247,6 @@
     };
 };
 
-&simtray {
-    status-gpio = <&tlmm 88 0x00>;
+&sdhc_2 {
+	cd-gpios = <&tlmm 88 GPIO_ACTIVE_HIGH>;
 };
